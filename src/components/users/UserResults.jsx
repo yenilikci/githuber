@@ -1,4 +1,6 @@
 import {useEffect, useState} from 'react';
+// import Spinner from '../layout/Spinner';
+import ReactLoading from 'react-loading';
 
 function UserResults(props) {
 
@@ -30,7 +32,9 @@ function UserResults(props) {
       );
   }
   else {
-       return <h3>Loading...</h3>
+       return <div className="flex justify-center">
+           <ReactLoading type="cylon" color="#ddd" height={500} width={375} />
+       </div>
   }
 }
 
