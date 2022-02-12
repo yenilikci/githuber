@@ -1,14 +1,16 @@
 import {useContext, useEffect} from 'react';
 import ReactLoading from 'react-loading';
 import GithubContext from '../../context/github/GithubContext';
+import RepoList from "../repos/RepoList";
 import {Link} from "react-router-dom";
 import {FaCodepen, FaStore, FaUserFriends, FaUsers} from "react-icons/fa";
 
 function User({match}) {
-    const {getUser, user, loading} = useContext(GithubContext);
+    const {getUser, user, loading, getUserRepos, repos } = useContext(GithubContext);
 
     useEffect(() => {
         getUser(match.params.login);
+        getUserRepos(match.params.login);
     }, []);
 
     const {
@@ -160,8 +162,9 @@ function User({match}) {
                             {public_gists}
                         </div>
                     </div>
-
                 </div>
+
+                <RepoList repos={repos}/>
             </div>
         </>
     );
